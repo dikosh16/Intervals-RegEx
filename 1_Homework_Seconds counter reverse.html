@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+<!-- Изменяем код так чтобы отсчет начинался с 30 и заканчивался на 1. -->
+
+<!-- Створюємо HTML-теги для розмітки вмісту лічильника секунд -->
+    <h1>Лічильник секунд</h1>
+    <p id="counter">30</p>
+    <button onclick="startCounting()">Старт</button>
+    <button onclick="stopCounting()">Стоп</button>
+    <button onclick="resetCounting()">Обнулити</button>
+    <script>
+    // Створюємо змінні лічильника секунд
+        let intervalId;
+        let count = 30;
+        let targetCount = 1;
+        let Mycounter = document.getElementById('counter');
+
+    // Створюємо функцію для запуску лічильника секунд    
+        function startCounting() {
+            if (!intervalId) {
+                intervalId = setInterval(updateCounter, 1000);
+            }
+        }
+
+    // Створюємо функцію для зупинки лічильника секунд
+        function stopCounting() {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
+
+    // Створюємо функцію для зупинки лічильника секунд
+        function resetCounting() {
+            stopCounting();
+            count = 30;
+            updateCounter();
+        }
+        
+    // Створюємо функцію для оновлення та відображення лічильника секунд на сторінці
+        function updateCounter() {
+            if (count >= targetCount) {
+                Mycounter.textContent = count;
+                count--;
+            } else {
+                stopCounting();
+            }
+        }
+    </script>
+</body>
+</html>

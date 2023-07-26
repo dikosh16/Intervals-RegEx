@@ -1,0 +1,62 @@
+<!-- 
+    Запросите у пользователя ввести какую-то фразу. 
+    Отобразите каждое отдельное слово в виде списка ul li. 
+    Также отобразите первое слово UPPERCASE, а последние 2 с маленькой. 
+    Найдите все буквы "а" их количество в модальное окно. 
+ -->
+ 
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+</head>
+<body>
+    <h1>Введіть фразу:</h1>
+    <input type="text" id="myText" />
+    <button onclick="myTextprocess()">Обробити</button>
+    <h2>Список слів:</h2>
+    <ul id="myList"></ul>
+    <h2>Результат:</h2>
+    <p id="result"></p>
+    <script>
+        function myTextprocess() {
+            // Отримуємо фразу чи текст від користувача
+            let myText = document.getElementById('myText').value;
+            // Розбиваємо текст на окремі слова за пробілами
+            let words = myText.split(' ');
+            // Отримуємо елемент списку та параграфа для результатів
+            let myListElement = document.getElementById('myList');
+            let resultElement = document.getElementById('result');
+            // Очищаємо список та параграф перед обробкою нових результатів
+            myListElement.innerHTML = '';
+            resultElement.textContent = '';
+
+            // Обробляємо кожне слово
+            for (let i = 0; i < words.length; i++) {
+                let word = words[i];
+                let listItem = document.createElement('li');
+
+                // Перше слово, виводимо його у верхньому регістрі
+                if (i === 0) {
+                    listItem.textContent = word.toUpperCase();
+                // Останні два слова, виводимо в нижньому регістрі
+                } else if (i >= words.length - 2) {
+                    listItem.textContent = word.toLowerCase();
+                // Останні два слова
+                } else {
+                    listItem.textContent = word;
+                }
+                // Додаємо елемент списку до списку слів
+                myListElement.appendChild(listItem);
+            }
+
+            // Підраховуємо кількість букв "а" у фразі
+            let countOfLetterA = (myText.match(/a/giu) || []).length;
+            // Виводимо результат
+            resultElement.textContent = `Кількість букв "а" у фразі: ${countOfLetterA}`;
+        }
+    </script> 
+</body>
+</html>
+
